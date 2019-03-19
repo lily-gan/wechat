@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/lily-gan/wechat/issues"
   },
-  "homepage": "https://github.com/lily-gan/wechat#readme"
+  "homepage": "https://github.com/lily-gan/wechat#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "sha1": "^1.1.1",
+    "xml2js": "^0.4.19"
+  }
 }

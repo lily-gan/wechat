@@ -15,6 +15,7 @@ module.exports = {
                 })
         })
     },
+
     //解析XML数据
     parseXMLData(XMLData){
         let jsData = null;

@@ -1,6 +1,7 @@
 const sha1 = require('sha1')
 const {getUserDataAsync, parseXMLData, formatJsData} = require('../util/tools')
 const template = require('./template')
+const handleResponse = require('./handle-response')
 module.exports = () => {
     return async (req, res) => {
         //微信服务器发送过来的请求参数
@@ -35,24 +36,9 @@ module.exports = () => {
             const jsData = parseXMLData(xmlData)
             //格式化jsData
             const userData = formatJsData(jsData)
-            //实现自动回复
-            let options = {
-                toUserName: userData.FromUserName,
-                fromUserName: userData.ToUserName,
-                type: 'text',
-                content: '你在说什么?我听不懂'
-            }
-            if (userData.Content === '1') {
-                options.content = '呆子,你好呀'
-            } else if (userData.Content && userData.Content.indexOf('2') !== -1) {
-                options.content = '呆萌的小美女,你好呀'
-            }
-            if (userData.MsgType === 'image') {
-                //将用户发送的图片,返回回去
-                options.mediaId = userData.mediaId;
-                options.type = 'image'
-            }
+            const options = handleResponse(userData)
             const replyMessage = template(options)
+
             console.log(replyMessage);
             //返回响应
             res.send(replyMessage)

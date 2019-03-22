@@ -4,7 +4,7 @@ const app = express()
 
 app.use(reply())
 
-app.listen(3000,(err)=>{
+app.listen(4000,(err)=>{
     if(!err){
         console.log('服务器连接成功')
     }else{
